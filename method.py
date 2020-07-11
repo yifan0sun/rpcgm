@@ -151,8 +151,8 @@ class RPCGM(PCGM, Method):
         PCGM.__init__(self,prob,gauge,convexphi, lam,opts, tracklist, xstart)
         self.nonconvex = nonconvex
         
-        self.safe_screened = self.gauge.get_atom_weights(self.xstart*0.)
-        self.safe_screened[:] = False
+        self.screened = self.gauge.get_atom_weights(self.xstart*0.)
+        self.screened[:] = False
        
 
     def update_tracking(self,iter):
@@ -160,16 +160,16 @@ class RPCGM(PCGM, Method):
         
         if 'res' in self.track.keys():
             self.track['res'].append(self.res)
-        if 'nsafescreened' in self.track.keys():
-            self.track['nsafescreened'].append(np.sum(self.safe_screened))
+        if 'nscreened' in self.track.keys():
+            self.track['nscreened'].append(np.sum(self.screened))
             
-        if 'pr_safescreen' in self.track.keys():
-            guess = np.not_equal(self.safe_screened,1.)
+        if 'pr_screen' in self.track.keys():
+            guess = np.not_equal(self.screened,1.)
             truth = np.not_equal(self.prob.x_true,0.)
             overlap = np.logical_and(guess,truth)
             precision = sum(overlap)/(sum(guess)+0.)
             recall = sum(overlap)/(sum(truth)+0.)
-            self.track['pr_safescreen'].append(np.vstack([precision,recall]))
+            self.track['pr_screen'].append(np.vstack([precision,recall]))
     
 
             
@@ -213,20 +213,19 @@ class RPCGM(PCGM, Method):
     def screen(self,iter):
         self.set_res()
         self.set_resbnd()        
-        self.set_safe_resbnd()        
+        self.set_resbnd()        
         #if self.gap <= 0.: 
         #    print 'warning, gap value %d < 0' % self.gap
         #if self.res <= 0.: 
         #    print 'warning, res value %d < 0' % self.res
         
         screened = self.gauge.screen(-self.vars['g'],self.resbnd)
-        self.screened[:] = False
         self.screened[screened] = True 
 
     
         if iter > 5:
-            screened = self.gauge.screen(-self.vars['g'],self.safe_resbnd)
-            self.safe_screened[screened] = True 
+            screened = self.gauge.screen(-self.vars['g'],self.resbnd)
+            self.screened[screened] = True 
     
     def set_gap(self):
         g,s = self.vars['g'],self.vars['s']
@@ -248,6 +247,6 @@ class RPCGM(PCGM, Method):
        
                 
         
-    def set_safe_resbnd(self):
-        self.safe_resbnd = 2.*np.sqrt(self.L*self.res)*self.nonconvex.rmax
+    def set_resbnd(self):
+        self.resbnd = 2.*np.sqrt(self.L*self.res)*self.nonconvex.rmax
     
