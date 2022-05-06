@@ -26,3 +26,4 @@ Use example.ipynb to create an example problem and run method + screening.
 
 ## Paper:
 Yifan Sun and Francis Bach. "Screening for a Reweighted Penalized Conditional Gradient Method." (Under review.) arXiv preprint arXiv:2107.01106 (2021).
+Link: https://arxiv.org/abs/2107.01106
