@@ -23,3 +23,6 @@ Use example.ipynb to create an example problem and run method + screening.
  - small_experiments: small sensing experiment, using Gaussian random sensing matrix
  - groupnorm/nucnorm/TVnorm: shows method behavior for interesting norms
  - Dorothea: logistic regression task. dataset (https://archive.ics.uci.edu/ml/datasets/dorothea)
+
+## Paper:
+Yifan Sun and Francis Bach. "Screening for a Reweighted Penalized Conditional Gradient Method." (Under review.) arXiv preprint arXiv:2107.01106 (2021).
