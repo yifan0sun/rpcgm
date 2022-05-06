@@ -1,4 +1,6 @@
 # RP-CGM
+
+## Code for use
 Reweighted Penalized Conditional Gradient Method
 
 Use example.ipynb to create an example problem and run method + screening.
@@ -15,3 +17,9 @@ Use example.ipynb to create an example problem and run method + screening.
    
  - method.py
    - encodes P-CGM and RP-CGM. 
+
+## Code that reproduces figures in paper
+
+ - small_experiments: small sensing experiment, using Gaussian random sensing matrix
+ - groupnorm/nucnorm/TVnorm: shows method behavior for interesting norms
+ - Dorothea: logistic regression task. dataset (https://archive.ics.uci.edu/ml/datasets/dorothea)
