@@ -18,6 +18,10 @@ Use example.ipynb to create an example problem and run method + screening.
  - method.py
    - encodes P-CGM and RP-CGM. 
 
+## Simulation
+ - simulation.gif file
+ - task: compressed sensing. left: CGM. middle: P-CGM. right: RP-CGM. 
+
 ## Code that reproduces figures in paper
 
  - small_experiments: small sensing experiment, using Gaussian random sensing matrix
