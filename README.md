@@ -1,5 +1,7 @@
 # RP-CGM
 
+Note: this code is written in Python2.
+
 ## Code for use
 Reweighted Penalized Conditional Gradient Method
 
